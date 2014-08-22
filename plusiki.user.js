@@ -7,12 +7,16 @@
 // @include     http://www.wykop.pl/wpis/*
 // @include     http://www.wykop.pl/tag/*
 // @include     http://www.wykop.pl/ustawienia/
-// @version     1.2.0
+// @version     1.2.1
 // @description	formatuje plusuj?cych pod wpisami na mirko
+// @downloadURL https://github.com/kplaczek/plusujacy-na-wykop.pl/raw/master/plusiki.user.js
+// @updateURL   https://github.com/kplaczek/plusujacy-na-wykop.pl/raw/master/plusiki.user.js
 // @grant       none
 // ==/UserScript==
 
 function main() {
+
+    addStyle();
 
     var appkey = 'ZFlTRsQxPA';
     var elementy = [];
@@ -173,7 +177,6 @@ function main() {
         }
     }
 
-
     function handleText(number)
     {
         return (number > 1) ? localStorage.plural : localStorage.singular;
@@ -183,7 +186,6 @@ function main() {
     {
         return $('img.avatar').attr('alt');
     }
-
 
     function generateSettingsBox(title)
     {
@@ -197,7 +199,6 @@ function main() {
         settingsBox.append(fieldset.append(h3).append(fleft));
         return settingsBox;
     }
-
 
     function getFollowedUsers(page, force)
     {
@@ -226,7 +227,6 @@ function main() {
             }
         });
     }
-
 
     function handleScroll()
     {
@@ -262,6 +262,13 @@ function main() {
     {
         localStorage[$(e.target).attr('mode')] = $(e.target).val();
     }
+    
+    function addStyle() {
+        var style = document.createElement('style');
+        style.textContent = '.voters-list .color-0 {color: #339933 !important;}.voters-list .color-1 {color: #ff5917 !important;}.voters-list .color-2 {color: #bb0000 !important;}.voters-list .color-3 {color: #ff0000 !important;}.voters-list .color-4 {color: #999999 !important;}.voters-list .color-5 {color: #000000 !important;}.voters-list .color-6 {color: #367aa9 !important;}.voters-list .color-1001 {color: #999999 !important;}.voters-list .color-1002 {color: #999999 !important;}.voters-list .color-2001 {color: #3f6fa0 !important;}';
+        document.body.appendChild(style);
+    }
+    
 }
 
 if (typeof $ === 'undefined') {
